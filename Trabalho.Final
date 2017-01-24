@@ -37,7 +37,7 @@ typedef struct cliente{
     char endereco[99];
 } Cadastro_cliente;
 
-Cadastro_cliente cliente{500};
+Cadastro_cliente cliente[500];
 int C, cont_C=0;
 
 
@@ -91,6 +91,10 @@ int main (){
                 do{
                     system("cls");
                     for (c=cont_c; c<100; c++){
+                        if (cont_f==0){
+                            break;
+                        }
+
                         printf("Digite o modelo do carro:\n");
                         gets (carro[c].modelo);
                         fflush(stdin);
@@ -144,32 +148,35 @@ int main (){
                 }if (cont_c==200){                                //----------Verificação da quantidade de cadastros
                     printf("\n*************Numero maximo de carros cadastrados atingido!*************\n\n\a");
                 }system("cls");
+                
                 break;
 
 
             case 3:
                 //----------Cadastrar cliente----------
                 do{
-                    
+                    for (C=cont_C; C<500; C++){
+                    printf("Digite o primeiro nome:\n");
+                    gets(cliente[C].nome);
+                    fflush(stdin);
 
 
+
+
+                    cont_C ++;
 
                     printf("\nCliente cadastrado com sucesso!\n");
                     printf("\n1 - Continuar cadastrando\n0 - Menu princial\n");
                     scanf("%d", &continuar);
                     fflush(stdin);
                     break;
+                    }
                 }while (continuar!=0 && continuar==1 && cont_C<500);
                 if (continuar!=0 && continuar!=1){
                     printf("\n*****************OPCAO INVALIDA*****************\n\n\a");
                 }if (cont_C==500){                                //----------Verificação da quantidade de cadastros
                     printf("\n*************Numero maximo de clientes cadastrados atingido!*************\n\n\a");
                 }system("cls");
-
-
-
-
-
                 break;
 
             case 4:
@@ -195,4 +202,5 @@ int main (){
     return 0;
 
 }
+
 
