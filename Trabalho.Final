@@ -194,7 +194,7 @@ int main (){
                         if(carro[c].estado==0){
                         printf("%s \t", carro[c].modelo);
                         printf("%s \t", carro[c].marca);
-                        printf("%d \t", carro[c].placa);
+                        printf("%s \t", carro[c].placa);
                         printf("%s \t", carro[c].lugar);
                         printf("%d \t", carro[c].ano);
                         printf("%s \t", carro[c].cor);
