@@ -3,14 +3,13 @@
 #include <string.h>
 
 
-
 //----------Struct da filial----------
 typedef struct filial{
 	    char nome[50];
 	    char endereco [200];
     } Cadastro_filial;
 
-    Cadastro_filial filial[100];
+    Cadastro_filial filial[50];
 	int f, cont_f=0;
 
 //----------Struct do carro----------
@@ -190,6 +189,30 @@ int main (){
 
             case 5:
                 //----------Manipular carros----------
+                do{
+                    for(c=0 ; c<cont_c ; c++){
+                        if(carro[c].estado==0){
+                        printf("%s \t", carro[c].modelo);
+                        printf("%s \t", carro[c].marca);
+                        printf("%d \t", carro[c].placa);
+                        printf("%s \t", carro[c].lugar);
+                        printf("%d \t", carro[c].ano);
+                        printf("%s \t", carro[c].cor);
+                        printf("%d \t", carro[c].km);
+                        }
+
+                    }
+
+
+
+                    printf("\n1 - Continuar cadastrando\n0 - Menu princial\n");
+                    scanf("%d", &continuar);
+                    fflush(stdin);
+                    break;
+                }while (continuar!=0 && continuar==1);
+                if (continuar!=0 && continuar!=1){
+                    printf("\n*****************OPCAO INVALIDA*****************\n\n\a");
+                }system("cls");
                 break;
 
             default:
