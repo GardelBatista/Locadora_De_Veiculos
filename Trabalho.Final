@@ -1,0 +1,198 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+//----------Struct da filial----------
+typedef struct filial{
+	    char nome[50];
+	    char endereco [200];
+    } Cadastro_filial;
+
+    Cadastro_filial filial[100];
+	int f, cont_f=0;
+
+//----------Struct do carro----------
+typedef struct carro{
+        char modelo[50];
+        char marca[50];
+        char cor[50];
+        unsigned int ano;
+        char placa[7];
+        int estado;
+        char *lugar;
+        unsigned int km;
+    } Cadastro_carro;
+
+    Cadastro_carro carro[200];
+    int c, cont_c=0;
+
+//----------Struct do cliente----------
+typedef struct cliente{
+    char nome[50];
+    char sobrenome[50];
+    unsigned int CPF[10];
+    unsigned int numeroC[5];
+    char senha[5];
+    char endereco[99];
+} Cadastro_cliente;
+
+Cadastro_cliente cliente{500};
+int C, cont_C=0;
+
+
+
+int main (){
+
+    int menu,continuar, contador_geral=1, escolha_filial;
+
+    //----------Menu principal----------
+    do {
+        printf("\t----- Selecione uma opcao: -----\n");
+        printf("\n1 - Cadastrar Filial\n2 - Cadastrar Carro\n3 - Cadastrar Cliente\n4 - Alugar\n5 - Manipular Carros\n");
+        printf("\nDigite 0 para fechar o programa.\n\n");
+        scanf("%d", &menu);
+        fflush(stdin);
+
+        switch (menu){
+
+            case 1:
+                //----------Cadastrar filial----------
+                do{
+                    system("cls");
+                    for (f=cont_f; f<100; f++){
+                        printf("Digite o nome da filial:\n");
+                        gets (filial[f].nome);
+                        fflush(stdin);
+
+                        printf("Digete o endereco da filial:\n");
+                        gets(filial[f].endereco);
+                        fflush(stdin);
+
+                        cont_f ++;
+
+                        printf("\nFilial cadastrada com sucesso!\n");
+                        printf("\n1 - Continuar cadastrando\n0 - Menu princial\n");
+                        scanf("%d", &continuar);
+                        fflush(stdin);
+                        break;
+                    }
+                    system("cls");
+                }while (continuar!=0 && continuar==1 && cont_f<100); //----------Validação do continuar
+                if (continuar!=0 && continuar!=1){
+                    printf("\n*****************OPCAO INVALIDA*****************\n\n\a");
+                }if (cont_f==100){//----------Verificação da quantidade de cadastros
+                    printf("\n*************Numero maximo de filiais cadastradas atingido!*************\n\n\a");
+                }
+                break;
+
+            case 2:
+                //----------Cadastrar carro----------
+                do{
+                    system("cls");
+                    for (c=cont_c; c<100; c++){
+                        printf("Digite o modelo do carro:\n");
+                        gets (carro[c].modelo);
+                        fflush(stdin);
+
+                        printf("Digite a marca do carro:\n");
+                        gets (carro[c].marca);
+                        fflush(stdin);
+
+                        printf("Digite a cor do carro:\n");
+                        gets (carro[c].cor);
+                        fflush(stdin);
+
+                        printf("Digite a placa do carro:\n");
+                        gets (carro[c].placa);
+                        fflush(stdin);
+
+                        printf("Digite o ano do carro:\n");
+                        scanf("%d", &carro[c].ano);
+                        fflush(stdin);
+
+                        printf("Digite a quilometragem atual:\n");
+                        scanf("%d", &carro[c].km);
+                        fflush(stdin);
+
+                        printf("\n\n*****LISTA DE FILIAIS*****\n"); //----------Listagem das filiais----------
+                        for(f=0 ; f<cont_f ; f++){
+                            printf("%d - %s\n", contador_geral, filial[f].nome);
+                            contador_geral ++;
+                        }
+                        printf("**************************\n");
+
+
+                        printf("\nDigite a filial em que o carro se encontra:\n");  //----------Verificar escolha de filial----------
+                        scanf("%d", &escolha_filial);
+                        fflush(stdin);
+                        f=escolha_filial-1;
+                        carro[c].lugar = filial[f].nome;
+
+                        contador_geral=1;
+                        cont_c ++;
+
+                        printf("\nCarro cadastrado com sucesso!\n");
+                        printf("\n1 - Continuar cadastrando\n0 - Menu princial\n");
+                        scanf("%d", &continuar);
+                        fflush(stdin);
+                        break;
+                    }
+                }while (continuar!=0 && continuar==1 && cont_c<200);  //----------Validação do continuar
+                if (continuar!=0 && continuar!=1){
+                    printf("\n*****************OPCAO INVALIDA*****************\n\n\a");
+                }if (cont_c==200){                                //----------Verificação da quantidade de cadastros
+                    printf("\n*************Numero maximo de carros cadastrados atingido!*************\n\n\a");
+                }system("cls");
+                break;
+
+
+            case 3:
+                //----------Cadastrar cliente----------
+                do{
+                    
+
+
+
+                    printf("\nCliente cadastrado com sucesso!\n");
+                    printf("\n1 - Continuar cadastrando\n0 - Menu princial\n");
+                    scanf("%d", &continuar);
+                    fflush(stdin);
+                    break;
+                }while (continuar!=0 && continuar==1 && cont_C<500);
+                if (continuar!=0 && continuar!=1){
+                    printf("\n*****************OPCAO INVALIDA*****************\n\n\a");
+                }if (cont_C==500){                                //----------Verificação da quantidade de cadastros
+                    printf("\n*************Numero maximo de clientes cadastrados atingido!*************\n\n\a");
+                }system("cls");
+
+
+
+
+
+                break;
+
+            case 4:
+                //----------Cadastrar aluguel----------
+                break;
+
+            case 5:
+                //----------Manipular carros----------
+                break;
+
+            default:
+                system("cls");
+                printf("\n*****************OPCAO INVALIDA*****************\n\n\a");
+        }
+
+
+
+
+    }while (menu!=0);
+    system("cls");
+    printf ("\nSaindo...\n");
+
+    return 0;
+
+}
+
