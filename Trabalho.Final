@@ -40,6 +40,14 @@ typedef struct cliente{
 Cadastro_cliente cliente[500];
 int C, cont_C=0;
 
+//----------Struct do aluguel----------
+typedef struct aluguel{
+    unsigned int valor;
+    unsigned int km_ini;
+    
+
+
+} Alugar;
 
 
 int main (){
