@@ -165,14 +165,32 @@ int main (){
 
 
             case 3:
-                //----------Cadastrar cliente----------
+               //----------Cadastrar cliente----------
                 do{
                     for (C=cont_C; C<500; C++){
                     printf("Digite o primeiro nome:\n");
                     gets(cliente[C].nome);
                     fflush(stdin);
 
+                    prntf("Digite o ultimo nome:\n");
+                    gets(cliente[C].sobrenome);
+                    fflush(stdin);
 
+                    printf("Digite seu CPF:\n");
+                    scanf("%d", &cliente[C].CPF);
+                    fflush(stdin);
+
+                    printf("Digite seu numero de cadastro");
+                    scanf("%d", &cliente[C].numeroC);
+                    fflush(stdin);
+
+                    printf("Digite sua senha:");
+                    gets(cliente[C].senha);
+                    fflush(stdin);
+
+                    pritnf("Digite seu endereco:");
+                    gets(cliente[C].endereco);
+                    fflush(stdin);
 
 
                     cont_C ++;
