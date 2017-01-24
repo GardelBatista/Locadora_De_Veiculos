@@ -1,8 +1,11 @@
+b
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-a
+
+
 //----------Struct da filial----------
 typedef struct filial{
 	    char nome[50];
