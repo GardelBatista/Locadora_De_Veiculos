@@ -148,7 +148,11 @@ int main (){
                 }if (cont_c==200){                                //----------Verificação da quantidade de cadastros
                     printf("\n*************Numero maximo de carros cadastrados atingido!*************\n\n\a");
                 }system("cls");
-                
+                if (cont_f==0){
+                    system("cls");
+                    printf("\n*************Nenhuma Filial Cadastrada!*************\n\n\a");
+                }
+
                 break;
 
 
