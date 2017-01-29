@@ -31,7 +31,7 @@ typedef struct carro{
 typedef struct cliente{
     char nome[50];
     char sobrenome[50];
-    unsigned int CPF[10];
+    char CPF[10];
     unsigned int numeroC[5];
     char senha[5];
     char endereco[99];
@@ -44,7 +44,7 @@ int C, cont_C=0;
 typedef struct aluguel{
     unsigned int valor;
     unsigned int km_ini;
-    
+
 
 
 } Alugar;
@@ -52,7 +52,8 @@ typedef struct aluguel{
 
 int main (){
 
-    int menu,continuar, contador_geral=1, escolha_filial;
+    int menu,continuar, contador_geral=1, escolha_filial, validar;
+    int icpf[10], i,somador=0,digito1,result1,result2,digito2,valor;
 
     //----------Menu principal----------
     do {
@@ -68,7 +69,7 @@ int main (){
                 //----------Cadastrar filial----------
                 do{
                     system("cls");
-                    for (f=cont_f; f<100; f++){
+                    for (f=cont_f; f<50; f++){
                         printf("Digite o nome da filial:\n");
                         gets (filial[f].nome);
                         fflush(stdin);
@@ -86,10 +87,10 @@ int main (){
                         break;
                     }
                     system("cls");
-                }while (continuar!=0 && continuar==1 && cont_f<100); //----------Validação do continuar
+                }while (continuar!=0 && continuar==1 && cont_f<50); //----------Validação do continuar
                 if (continuar!=0 && continuar!=1){
                     printf("\n*****************OPCAO INVALIDA*****************\n\n\a");
-                }if (cont_f==100){//----------Verificação da quantidade de cadastros
+                }if (cont_f==50){//----------Verificação da quantidade de cadastros
                     printf("\n*************Numero maximo de filiais cadastradas atingido!*************\n\n\a");
                 }
                 break;
@@ -167,32 +168,70 @@ int main (){
             case 3:
                //----------Cadastrar cliente----------
                 do{
+                    system("cls");
                     for (C=cont_C; C<500; C++){
                     printf("Digite o primeiro nome:\n");
                     gets(cliente[C].nome);
                     fflush(stdin);
 
-                    prntf("Digite o ultimo nome:\n");
+                    printf("Digite o ultimo nome:\n");
                     gets(cliente[C].sobrenome);
                     fflush(stdin);
 
-                    printf("Digite seu CPF:\n");
-                    scanf("%d", &cliente[C].CPF);
-                    fflush(stdin);
+                    do{
+                        somador=0,digito1=0,result1=0,result2=0,digito2=0,valor=0;
+                       printf("Digite seu CPF:\n"); //----------Validar CPF
+                       scanf("%s",cliente[C].CPF);
 
-                    printf("Digite seu numero de cadastro");
+                        for(i=0;i<11;i++){
+                        icpf[i]=cliente[C].CPF[i]-48;
+                        }
+                        for(i=0;i<9;i++){
+                        somador+=icpf[i]*(10-i);
+                        }
+                        result1=somador%11;
+                        if( (result1==0) || (result1==1) ){
+                        digito1=0;
+                        }
+                        else{
+                        digito1 = 11-result1;
+                        }
+                        somador=0;
+                        for(i=0;i<10;i++){
+                        somador+=icpf[i]*(11-i);
+                        }
+                        valor=(somador/11)*11;
+                        result2=somador-valor;
+                        if( (result2==0) || (result2==1) ){
+                        digito2=0;
+                        }
+                        else{
+                        digito2=11-result2;
+                        }
+                        //------Resultado Validação
+                        if((digito1==icpf[9]) && (digito2==icpf[10])){
+                        printf("\nCPF VALIDADO.\n");
+                        validar=1;
+                        }
+                        else{
+                        printf("\nCPF nao valido.\n");
+                        validar=0;
+                        }
+                    }while(validar==0);
+
+                    printf("Digite seu numero de cadastro: ");
                     scanf("%d", &cliente[C].numeroC);
                     fflush(stdin);
 
-                    printf("Digite sua senha:");
+                    printf("Digite sua senha: ");
                     gets(cliente[C].senha);
                     fflush(stdin);
 
-                    pritnf("Digite seu endereco:");
+                    printf("Digite seu endereco: ");
                     gets(cliente[C].endereco);
                     fflush(stdin);
 
-
+                    validar=0;
                     cont_C ++;
 
                     printf("\nCliente cadastrado com sucesso!\n");
@@ -256,5 +295,3 @@ int main (){
     return 0;
 
 }
-
-
