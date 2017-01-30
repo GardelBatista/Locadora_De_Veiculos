@@ -121,7 +121,7 @@ int main (){
                         gets (carro[c].cor);
                         fflush(stdin);
 
-                        printf("Digite a placa do carro:\n");
+                        printf("Digite a placa do carro(Exemplo: MAC-5421):\n");
                         gets (carro[c].placa);
                         fflush(stdin);
 
@@ -228,7 +228,7 @@ int main (){
                     scanf("%d", &cliente[C].numeroC);
                     fflush(stdin);
 
-                    printf("Digite sua senha: ");
+                    printf("Digite sua senha(6 Digitos): ");
                     gets(cliente[C].senha);
                     fflush(stdin);
 
