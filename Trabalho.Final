@@ -96,7 +96,7 @@ int main (){
                 break;
 
             case 2:
-                //----------Cadastrar carro----------
+                               //----------Cadastrar carro----------
                 do{
                     system("cls");
                     for (c=cont_c; c<100; c++){
@@ -144,6 +144,7 @@ int main (){
 
                         contador_geral=1;
                         cont_c ++;
+                        carro[c].estado=0; //----------Coloca o carro como disponivel para alugar----------
 
                         printf("\nCarro cadastrado com sucesso!\n");
                         printf("\n1 - Continuar cadastrando\n0 - Menu princial\n");
@@ -163,7 +164,6 @@ int main (){
                 }
 
                 break;
-
 
             case 3:
                //----------Cadastrar cliente----------
