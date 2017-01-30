@@ -17,7 +17,7 @@ typedef struct carro{
         char modelo[50];
         char marca[50];
         char cor[50];
-        unsigned int ano;
+        unsigned int ano[3];
         char placa[7];
         int estado;
         char *lugar;
@@ -44,15 +44,20 @@ int C, cont_C=0;
 typedef struct aluguel{
     unsigned int valor;
     unsigned int km_ini;
-
-
-
+    unsigned int km_final;
+    unsigned int dia[1];
+    unsigned int mes[1];
+    unsigned int ano[3];
+    char* placa;
+    unsigned int* numeroC;
 } Alugar;
 
+Alugar alugar[1000];
+int a, cont_a=0;
 
 int main (){
 
-    int menu,continuar, contador_geral=1, escolha_filial, validar;
+    int menu,continuar, contador_geral=1, escolha_filial, validar, escolha_cliente;
     int icpf[10], i,somador=0,digito1,result1,result2,digito2,valor;
 
     //----------Menu principal----------
@@ -96,7 +101,7 @@ int main (){
                 break;
 
             case 2:
-                               //----------Cadastrar carro----------
+                //----------Cadastrar carro----------
                 do{
                     system("cls");
                     for (c=cont_c; c<100; c++){
@@ -134,7 +139,7 @@ int main (){
                             contador_geral ++;
                         }
                         printf("**************************\n");
-
+                        contador_geral=0;
 
                         printf("\nDigite a filial em que o carro se encontra:\n");  //----------Verificar escolha de filial----------
                         scanf("%d", &escolha_filial);
@@ -250,6 +255,48 @@ int main (){
 
             case 4:
                 //----------Cadastrar aluguel----------
+                do{
+                    system("cls");
+                    for (a=cont_a; a<1000; a++){
+                        if (cont_c==0){
+                            break;
+                        }
+                        printf("\n\n*****CLIENTES CADASTRADOS*****\n"); //----------Listagem dos clientes----------
+                        for(C=0 ; C<cont_C ; C++){
+                            printf("%d - %d\t%s\t%s\t%s\n", contador_geral, cliente[C].numeroC, cliente[C].nome, cliente[C].sobrenome, cliente[C].CPF);
+                            contador_geral ++;
+                        }
+                        printf("**************************\n");
+                        contador_geral=0;
+
+                        printf("\nNumero em que o cliente se encontra na lista:\n");  //----------Verificar escolha de cliente----------
+                        scanf("%d", &escolha_cliente);
+                        fflush(stdin);
+                        f=escolha_cliente-1;
+                        alugar[a].numeroC = cliente[C].numeroC;
+
+
+
+
+
+
+
+                        printf("\nAluguel cadastrado com sucesso!\n");
+                        printf("\n1 - Continuar cadastrando\n0 - Menu princial\n");
+                        scanf("%d", &continuar);
+                        fflush(stdin);
+                        break;
+                    }
+                }while (continuar!=0 && continuar==1 && cont_a<1000);  //----------Validação do continuar
+                if (continuar!=0 && continuar!=1){
+                    printf("\n*****************OPCAO INVALIDA*****************\n\n\a");
+                }if (cont_a==1000){                                //----------Verificação da quantidade de cadastros
+                    printf("\n*************Numero maximo de alugueis cadastrados atingido!*************\n\n\a");
+                }system("cls");
+                if (cont_c==0){
+                    system("cls");
+                    printf("\n*************Nenhum carro cadastrado!*************\n\n\a");
+                }
                 break;
 
             case 5:
