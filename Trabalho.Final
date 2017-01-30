@@ -290,7 +290,7 @@ int main (){
                         contador_geral=0;
 
                         printf("\nNumero em que o carro se encontra na lista:\n");  //----------Verificar escolha de carro----------
-                        scanf("%d", &escolha_carr4);
+                        scanf("%d", &escolha_carro);
                         fflush(stdin);
                         c=escolha_carro-1;
                         alugar[a].placa = carro[c].placa;
@@ -363,7 +363,7 @@ int main (){
                         }
                     }
                     printf("\nNumero em que o carro se encontra na lista:\n");  //----------Verificar escolha de carro----------
-                    scanf("%d", &escolha_carr4);
+                    scanf("%d", &escolha_carro);
                     fflush(stdin);
                     f=escolha_carro-1;
                     alugar[a].placa = carro[c].placa;
