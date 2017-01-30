@@ -48,6 +48,9 @@ typedef struct aluguel{
     unsigned int dia[1];
     unsigned int mes[1];
     unsigned int ano[3];
+    unsigned int dia_d[1];
+    unsigned int mes_d[1];
+    unsigned int ano_d[3];
     char* placa;
     unsigned int* numeroC;
 } Alugar;
@@ -57,7 +60,7 @@ int a, cont_a=0;
 
 int main (){
 
-    int menu,continuar, contador_geral=1, escolha_filial, validar, escolha_cliente;
+    int menu,continuar, contador_geral=1, escolha_filial, validar, escolha_cliente, escolha_carro;
     int icpf[10], i,somador=0,digito1,result1,result2,digito2,valor;
 
     //----------Menu principal----------
@@ -121,7 +124,7 @@ int main (){
                         gets (carro[c].cor);
                         fflush(stdin);
 
-                        printf("Digite a placa do carro(Exemplo: MAC-5421):\n");
+                        printf("Digite a placa do carro:\n");
                         gets (carro[c].placa);
                         fflush(stdin);
 
@@ -228,7 +231,7 @@ int main (){
                     scanf("%d", &cliente[C].numeroC);
                     fflush(stdin);
 
-                    printf("Digite sua senha(6 Digitos): ");
+                    printf("Digite sua senha: ");
                     gets(cliente[C].senha);
                     fflush(stdin);
 
@@ -274,18 +277,64 @@ int main (){
                         fflush(stdin);
                         f=escolha_cliente-1;
                         alugar[a].numeroC = cliente[C].numeroC;
+                        system("cls");
 
+                        printf("\n\n*****CARROS CADASTRADOS*****\n"); //----------Listagem dos carros----------
+                        for(c=0 ; c<cont_c ; c++){
+                            if(carro[c].estado==0){
+                                printf("%d - %s\t%s\t%s\t%s\n", contador_geral, carro[c].placa, carro[c].modelo, carro[c].marca, carro[c].lugar);
+                                contador_geral ++;
+                            }
+                        }
+                        printf("**************************\n");
+                        contador_geral=0;
 
+                        printf("\nNumero em que o carro se encontra na lista:\n");  //----------Verificar escolha de carro----------
+                        scanf("%d", &escolha_carr4);
+                        fflush(stdin);
+                        f=escolha_carro-1;
+                        alugar[a].placa = carro[c].placa;
+                        alugar[a].km_ini = carro[c].km;
+                        system("cls");
 
+                        printf("Nome do cliente: %s %s\n", cliente[C].nome, cliente[C].sobrenome);
+                        printf("Placa do carro: %s\n\n", carro[c].placa);
 
+                        printf("Dia da locacao:");
+                        scanf("%d", &alugar[a].dia);
+                        printf("Mes da locacao:");
+                        scanf("%d", &alugar[a].mes);
+                        printf("Ano da locacao:");
+                        scanf("%d", &alugar[a].ano);
 
+                        printf("Dia da devolucao:");
+                        scanf("%d", &alugar[a].dia_d);
+                        printf("Mes da devolucao:");
+                        scanf("%d", &alugar[a].mes_d);
+                        printf("Ano da devolucao:");
+                        scanf("%d", &alugar[a].ano_d);
 
+                        printf("\nDigite o valor da locacao:");
+                        scanf("%d", &alugar[a].valor);
+
+                        cont_a ++;
 
                         printf("\nAluguel cadastrado com sucesso!\n");
                         printf("\n1 - Continuar cadastrando\n0 - Menu princial\n");
                         scanf("%d", &continuar);
                         fflush(stdin);
                         break;
+
+                        printf("\n\n*****Teste*****\n"); //----------REMOVER
+                        for(a=0 ; a<cont_a ; a++){
+                            printf("%d - %s\t%s %d/%d/%d\n", contador_geral, alugar[a].numeroC, alugar[a].placa, alugar[a].dia, alugar[a].mes, alugar[a].ano);
+                            contador_geral ++;
+                        }
+                        printf("**************************\n");
+                        contador_geral=0;
+
+
+
                     }
                 }while (continuar!=0 && continuar==1 && cont_a<1000);  //----------Validação do continuar
                 if (continuar!=0 && continuar!=1){
