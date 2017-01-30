@@ -275,7 +275,7 @@ int main (){
                         printf("\nNumero em que o cliente se encontra na lista:\n");  //----------Verificar escolha de cliente----------
                         scanf("%d", &escolha_cliente);
                         fflush(stdin);
-                        f=escolha_cliente-1;
+                        C=escolha_cliente-1;
                         alugar[a].numeroC = cliente[C].numeroC;
                         system("cls");
 
@@ -292,7 +292,7 @@ int main (){
                         printf("\nNumero em que o carro se encontra na lista:\n");  //----------Verificar escolha de carro----------
                         scanf("%d", &escolha_carr4);
                         fflush(stdin);
-                        f=escolha_carro-1;
+                        c=escolha_carro-1;
                         alugar[a].placa = carro[c].placa;
                         alugar[a].km_ini = carro[c].km;
                         system("cls");
@@ -361,8 +361,14 @@ int main (){
                         printf("%s \t", carro[c].cor);
                         printf("%d \t", carro[c].km);
                         }
-
                     }
+                    printf("\nNumero em que o carro se encontra na lista:\n");  //----------Verificar escolha de carro----------
+                    scanf("%d", &escolha_carr4);
+                    fflush(stdin);
+                    f=escolha_carro-1;
+                    alugar[a].placa = carro[c].placa;
+                    alugar[a].km_ini = carro[c].km;
+                    system("cls");
 
 
 
