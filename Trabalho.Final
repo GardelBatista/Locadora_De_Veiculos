@@ -17,7 +17,7 @@ typedef struct carro{
         char modelo[50];
         char marca[50];
         char cor[50];
-        unsigned int ano[3];
+        unsigned int ano;
         char placa[7];
         int estado;
         char *lugar;
@@ -29,10 +29,10 @@ typedef struct carro{
 
 //----------Struct do cliente----------
 typedef struct cliente{
-    char nome[50];
+    char nomec[50];
     char sobrenome[50];
     char CPF[10];
-    unsigned int numeroC[5];
+    unsigned int numeroC;
     char senha[5];
     char endereco[99];
 } Cadastro_cliente;
@@ -45,14 +45,14 @@ typedef struct aluguel{
     unsigned int valor;
     unsigned int km_ini;
     unsigned int km_final;
-    unsigned int dia[1];
-    unsigned int mes[1];
-    unsigned int ano[3];
-    unsigned int dia_d[1];
-    unsigned int mes_d[1];
-    unsigned int ano_d[3];
-    char* placa;
-    unsigned int* numeroC;
+    unsigned int dia;
+    unsigned int mes;
+    unsigned int ano;
+    unsigned int dia_d;
+    unsigned int mes_d;
+    unsigned int ano_d;
+    char* aplaca;
+    unsigned int* numeroCliente;
 } Alugar;
 
 Alugar alugar[1000];
@@ -142,7 +142,7 @@ int main (){
                             contador_geral ++;
                         }
                         printf("**************************\n");
-                        contador_geral=0;
+                        contador_geral=1;
 
                         printf("\nDigite a filial em que o carro se encontra:\n");  //----------Verificar escolha de filial----------
                         scanf("%d", &escolha_filial);
@@ -150,7 +150,7 @@ int main (){
                         f=escolha_filial-1;
                         carro[c].lugar = filial[f].nome;
 
-                        contador_geral=1;
+
                         cont_c ++;
                         carro[c].estado=0; //----------Coloca o carro como disponivel para alugar----------
 
@@ -179,7 +179,7 @@ int main (){
                     system("cls");
                     for (C=cont_C; C<500; C++){
                     printf("Digite o primeiro nome:\n");
-                    gets(cliente[C].nome);
+                    gets(cliente[C].nomec);
                     fflush(stdin);
 
                     printf("Digite o ultimo nome:\n");
@@ -226,6 +226,7 @@ int main (){
                         validar=0;
                         }
                     }while(validar==0);
+                    fflush(stdin);
 
                     printf("Digite seu numero de cadastro: ");
                     scanf("%d", &cliente[C].numeroC);
@@ -266,17 +267,17 @@ int main (){
                         }
                         printf("\n\n*****CLIENTES CADASTRADOS*****\n"); //----------Listagem dos clientes----------
                         for(C=0 ; C<cont_C ; C++){
-                            printf("%d - %d\t%s\t%s\t%s\n", contador_geral, cliente[C].numeroC, cliente[C].nome, cliente[C].sobrenome, cliente[C].CPF);
+                            printf("%d - %d\t%s\t%s\t%s\n", contador_geral, cliente[C].numeroC, cliente[C].nomec, cliente[C].sobrenome, cliente[C].CPF);
                             contador_geral ++;
                         }
                         printf("**************************\n");
-                        contador_geral=0;
+                        contador_geral=1;
 
                         printf("\nNumero em que o cliente se encontra na lista:\n");  //----------Verificar escolha de cliente----------
                         scanf("%d", &escolha_cliente);
                         fflush(stdin);
                         C=escolha_cliente-1;
-                        alugar[a].numeroC = cliente[C].numeroC;
+                        alugar[a].numeroCliente= &cliente[C].numeroC;
                         system("cls");
 
                         printf("\n\n*****CARROS CADASTRADOS*****\n"); //----------Listagem dos carros----------
@@ -287,18 +288,18 @@ int main (){
                             }
                         }
                         printf("**************************\n");
-                        contador_geral=0;
+                        contador_geral=1;
 
                         printf("\nNumero em que o carro se encontra na lista:\n");  //----------Verificar escolha de carro----------
                         scanf("%d", &escolha_carro);
                         fflush(stdin);
                         c=escolha_carro-1;
-                        alugar[a].placa = carro[c].placa;
+                        alugar[a].aplaca= carro[c].placa;
                         alugar[a].km_ini = carro[c].km;
                         system("cls");
 
-                        printf("Nome do cliente: %s %s\n", cliente[C].nome, cliente[C].sobrenome);
-                        printf("Placa do carro: %s\n\n", alugar[a].placa);
+                        printf("Nome do cliente: %s %s\n", cliente[C].nomec, cliente[C].sobrenome);
+                        printf("Placa do carro: %s\n\n", alugar[a].aplaca);
 
                         printf("Dia da locacao:");
                         scanf("%d", &alugar[a].dia);
@@ -321,11 +322,11 @@ int main (){
 
                         printf("\n\n*****Teste*****\n"); //----------REMOVER
                         for(a=0 ; a<cont_a ; a++){
-                            printf("%d - %s\t%s %d/%d/%d\n", contador_geral, alugar[a].numeroC, alugar[a].placa, alugar[a].dia, alugar[a].mes, alugar[a].ano);
+                            printf("%d - %d\t%s %d/%d/%d\n", contador_geral, alugar[a].numeroCliente, alugar[a].aplaca, alugar[a].dia, alugar[a].mes, alugar[a].ano);
                             contador_geral ++;
                         }
                         printf("**************************\n");
-                        contador_geral=0;
+                        contador_geral=1;
 
                         printf("\nAluguel cadastrado com sucesso!\n");
                         printf("\n1 - Continuar cadastrando\n0 - Menu princial\n");
@@ -351,13 +352,15 @@ int main (){
                 do{
                     for(c=0 ; c<cont_c ; c++){
                         if(carro[c].estado==0){
-                        printf("\nModelo:%s \t", carro[c].modelo);
-                        printf("Marca:%s \t", carro[c].marca);
-                        printf("Placa:%s \t", carro[c].placa);
-                        printf("Lugar:%s \t", carro[c].lugar);
-                        printf("Ano:%d \t", carro[c].ano);
-                        printf("Ano:%s \t", carro[c].cor);
-                        printf("Ano:%d \t", carro[c].km);
+                        printf("***********************\n");
+                        printf("Modelo:%s \n", carro[c].modelo);
+                        printf("Marca:%s \n", carro[c].marca);
+                        printf("Placa:%s \n", carro[c].placa);
+                        printf("Lugar:%s \n", carro[c].lugar);
+                        printf("Ano:%d \n", carro[c].ano);
+                        printf("Ano:%s \n", carro[c].cor);
+                        printf("Ano:%d \n", carro[c].km);
+                        printf("***********************\n");
                         }
                     }
                     printf("\nNumero em que o carro se encontra na lista:\n");  //----------Verificar escolha de carro----------
@@ -372,7 +375,7 @@ int main (){
                     contador_geral ++;
                     }
                     printf("\nFilial para qual o carro sera transferido:\n");
-                    contador_geral=0;
+                    contador_geral=1;
                     scanf("%d", &escolha_filial);
                     fflush(stdin);
                     f=escolha_filial-1;
