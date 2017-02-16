@@ -296,6 +296,7 @@ int main (){
                         c=escolha_carro-1;
                         alugar[a].aplaca= carro[c].placa;
                         alugar[a].km_ini = carro[c].km;
+                        carro[c].estado=1;
                         system("cls");
 
                         printf("Nome do cliente: %s %s\n", cliente[C].nomec, cliente[C].sobrenome);
@@ -319,13 +320,6 @@ int main (){
                         scanf("%d", &alugar[a].valor);
 
                         cont_a ++;
-
-                        for(a=0 ; a<cont_a ; a++){
-                            printf("%d - %d\t%s %d/%d/%d\n", contador_geral, alugar[a].numeroCliente, alugar[a].aplaca, alugar[a].dia, alugar[a].mes, alugar[a].ano);
-                            contador_geral ++;
-                        }
-                        printf("**************************\n");
-                        contador_geral=1;
 
                         printf("\nAluguel cadastrado com sucesso!\n");
                         printf("\n1 - Continuar cadastrando\n0 - Menu princial\n");
@@ -352,16 +346,20 @@ int main (){
                     for(c=0 ; c<cont_c ; c++){
                         if(carro[c].estado==0){
                         printf("***********************\n");
+                        printf("Numero - %d\n", contador_geral);
                         printf("Modelo:%s \n", carro[c].modelo);
                         printf("Marca:%s \n", carro[c].marca);
                         printf("Placa:%s \n", carro[c].placa);
                         printf("Lugar:%s \n", carro[c].lugar);
                         printf("Ano:%d \n", carro[c].ano);
-                        printf("Ano:%s \n", carro[c].cor);
-                        printf("Ano:%d \n", carro[c].km);
+                        printf("Cor:%s \n", carro[c].cor);
+                        printf("KM:%d \n", carro[c].km);
                         printf("***********************\n");
+                        contador_geral ++;
                         }
                     }
+                    contador_geral=1;
+
                     printf("\nNumero em que o carro se encontra na lista:\n");  //----------Verificar escolha de carro----------
                     scanf("%d", &escolha_carro);
                     fflush(stdin);
@@ -417,7 +415,7 @@ int main (){
 
                         printf("\n\n*****CARROS CADASTRADOS*****\n"); //----------Listagem dos carros----------
                         for(c=0 ; c<cont_c ; c++){
-                            if(carro[c].estado==0){
+                            if(carro[c].estado==1){
                                 printf("%d - %s\t%s\t%s\t%s\n", contador_geral, carro[c].placa, carro[c].modelo, carro[c].marca, carro[c].lugar);
                                 contador_geral ++;
                             }
@@ -429,21 +427,11 @@ int main (){
                         scanf("%d", &escolha_carro);
                         fflush(stdin);
                         c=escolha_carro-1;
-                        alugar[a].aplaca= carro[c].placa;
-                        alugar[a].km_ini = carro[c].km;
+                        carro[c].estado=0;
                         system("cls");
 
                         printf("Nome do cliente: %s %s\n", cliente[C].nomec, cliente[C].sobrenome);
                         printf("Placa do carro: %s\n\n", alugar[a].aplaca);
-
-                        cont_a ++;
-
-                        for(a=0 ; a<cont_a ; a++){
-                            printf("%d - %d\t%s %d/%d/%d\n", contador_geral, alugar[a].numeroCliente, alugar[a].aplaca, alugar[a].dia, alugar[a].mes, alugar[a].ano);
-                            contador_geral ++;
-                        }
-                        printf("**************************\n");
-                        contador_geral=1;
 
                         printf("\nDevolucao cadastrada com sucesso!\n");
                         printf("\n1 - Continuar com devolucoes\n0 - Menu princial\n");
@@ -455,9 +443,7 @@ int main (){
                 }while (continuar!=0 && continuar==1 && cont_a<1000);  //----------Validação do continuar
                 if (continuar!=0 && continuar!=1){
                     printf("\n*****************OPCAO INVALIDA*****************\n\n\a");
-                }if (cont_a==1000){                                //----------Verificação da quantidade de cadastros
-                    printf("\n*************Numero maximo de devolucoes atingido!*************\n\n\a");
-                }system("cls");
+                }
                 if (cont_c==0){
                     system("cls");
                     printf("\n*************Nenhum carro cadastrado!*************\n\n\a");
