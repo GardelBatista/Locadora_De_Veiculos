@@ -124,7 +124,7 @@ int main (){
                         gets (carro[c].cor);
                         fflush(stdin);
 
-                        printf("Digite a placa do carro:\n");
+                        printf("Digite a placa do carro(MAC-3274):\n");
                         gets (carro[c].placa);
                         fflush(stdin);
 
@@ -244,7 +244,7 @@ int main (){
                     cont_C ++;
 
                     printf("\nCliente cadastrado com sucesso!\n");
-                    printf("\n1 - Continuar cadastrando\n0 - Menu princial\n");
+                    printf("\n1 - Continuar cadastrando\n0 - Menu principal\n");
                     scanf("%d", &continuar);
                     fflush(stdin);
                     break;
@@ -320,7 +320,6 @@ int main (){
 
                         cont_a ++;
 
-                        printf("\n\n*****Teste*****\n"); //----------REMOVER
                         for(a=0 ; a<cont_a ; a++){
                             printf("%d - %d\t%s %d/%d/%d\n", contador_geral, alugar[a].numeroCliente, alugar[a].aplaca, alugar[a].dia, alugar[a].mes, alugar[a].ano);
                             contador_geral ++;
