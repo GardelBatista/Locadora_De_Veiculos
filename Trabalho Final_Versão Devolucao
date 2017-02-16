@@ -393,7 +393,7 @@ int main (){
             case 6: //------------ devolucao de veiculos-----------------
                 do{
                     system("cls");
-                    for (a=cont_a; a<1000; a++){
+                    for (i=0; i<1000; i++){
                         if (cont_c==0){
                             break;
                         }
